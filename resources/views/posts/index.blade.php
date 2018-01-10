@@ -5,7 +5,7 @@
 @section('content')
 <div class="page-header">
 	<div class="btn-toolbar pull-right">
-		<a class="btn btn-primary btn-lg" hraf="{{ route('posts.create') }}">
+		<a class="btn btn-primary btn-lg" href="{{ route('posts.create') }}">
 			<span class="glyphicon glyphicon-plus"></span>
 			Create New Post
 		</a>
@@ -32,10 +32,16 @@
 								<td>{{ $post->title }}</td>
 								<td>{{ $post->user->email }}</td>
 								<td>{{ \Carbon\Carbon::createFromTimeStamp(strtotime($post->created_at))->diffForHumans() }}</td>
-								<td>{{ \Carbon\Carbon::createFromTimeStamp(strtotime($post->updated_at))->diffForHumans() }}</td>
 								<td>
-								<a hraf="#" class="btn btn-default btn-sx">Edit</a>
-								<a hraf="#" class="btn btn-danger btn-sx" >Delete</a>
+								@if($post->updated_at === null)
+									{{ 'Never' }}
+								@else
+									{{ \Carbon\Carbon::createFromTimeStamp(strtotime($post->updated_at))->diffForHumans() }}
+								@endif
+								</td>
+								<td>
+								<a href="{{ route('posts.edit', $post->id) }}" class="btn btn-default btn-xs">Edit</a>
+								<a href="#" class="btn btn-danger btn-xs" >Delete</a>
 								</td>
 							</tr>
 						@endforeach

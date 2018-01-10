@@ -41,7 +41,7 @@ class Post extends Model
 	 */
 	public function savePost($post)
 	{
-		return $this->fill($post)->save();
+		return $this->create($post);
 	}
 	
 	/**

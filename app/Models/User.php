@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Cartaliyst\Sentinel\Users\EloquentUser;
+use Cartalyst\Sentinel\Users\EloquentUser;
 
 class User extends EloquentUser
 {

@@ -14,7 +14,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-		$posts = Post::orderBy('created_at', 'DESC')->paginate(20);
+		$posts = Post::orderBy('created_at', 'DESC')->paginate(12);
 		
 		return view('index')->with('posts',$posts);
     }
@@ -22,11 +22,13 @@ class IndexController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $post = Post::where('slug', $slug)->first();
+		
+		return view('post')->with('post', $post);
     }
 }
